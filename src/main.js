@@ -3,18 +3,24 @@
 require("babelify/polyfill");
 var React = require("react");
 
-
-console.log(1);
-
-var x: number = 2;
-console.log(x);
-
-let y: number = 3;
-console.log(y);
-
-console.log(4);
+var LikeButton = React.createClass({
+  getInitialState: function() {
+    return {liked: false};
+  },
+  handleClick: function(event) {
+    this.setState({liked: !this.state.liked});
+  },
+  render: function() {
+    var text = this.state.liked ? 'like' : 'haven\'t liked';
+    return (
+      <p onClick={this.handleClick}>
+        You {text} this. Click to toggle.
+      </p>
+    );
+  }
+});
 
 React.render(
-  <h1>Hello, world!</h1>,
-  document.getElementById('example')
+  <LikeButton />,
+  document.getElementById('root')
 );
