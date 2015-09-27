@@ -2,25 +2,24 @@
 "use strict";
 require("babelify/polyfill");
 var React = require("react");
+var classNames = require("classnames");
 
-var LikeButton = React.createClass({
+var Paddle = React.createClass({
   getInitialState: function() {
-    return {liked: false};
+    return {atBottom: false};
   },
   handleClick: function(event) {
-    this.setState({liked: !this.state.liked});
+    this.setState({atBottom: !this.state.atBottom});
   },
   render: function() {
-    var text = this.state.liked ? 'like' : 'haven\'t liked';
+    var posClass = this.state.atBottom ? 'bottom' : 'top';
     return (
-      <p onClick={this.handleClick}>
-        You {text} this. Click to toggle.
-      </p>
+      <div className={classNames('paddle', posClass)} onClick={this.handleClick} />
     );
   }
 });
 
 React.render(
-  <LikeButton />,
+  <Paddle />,
   document.getElementById('root')
 );

@@ -6,10 +6,10 @@ var watch = require('watch');
 var execSync = require('child_process').execSync;
 
 function compile() {
-  execSync(
-    "(clear; /Users/gelisam/working/js/pong/node_modules/.bin/flow; jsx --strip-types --harmony src build) || true",
-    {"stdio": 'inherit'}
-  );
+  //execSync(
+  //  "(clear; /Users/gelisam/working/js/pong/node_modules/.bin/flow; jsx --strip-types --harmony src build) || true",
+  //  {"stdio": 'inherit'}
+  //);
   browserify("./src/main.js", { debug: true })
     .transform(babelify)
     .bundle()

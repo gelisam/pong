@@ -1,0 +1,16 @@
+.paddle {
+  width: 20px;
+  height: 100px;
+  background-color: black;
+  transition: top 1s;
+}
+.top {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+.bottom {
+  position: absolute;
+  left: 10px;
+  top: 400px;
+}
