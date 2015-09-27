@@ -5,6 +5,9 @@ var React = require("react");
 var classNames = require("classnames");
 
 var Paddle = React.createClass({
+  propTypes: {
+    x: React.PropTypes.number.isRequired
+  },
   getInitialState: function() {
     return {atBottom: false};
   },
@@ -14,12 +17,19 @@ var Paddle = React.createClass({
   render: function() {
     var posClass = this.state.atBottom ? 'bottom' : 'top';
     return (
-      <div className={classNames('paddle', posClass)} onClick={this.handleClick} />
+      <div
+        className={classNames('paddle', posClass)}
+        style={{'left': this.props.x}}
+        onClick={this.handleClick}
+      />
     );
   }
 });
 
 React.render(
-  <Paddle />,
+  <div>
+    <Paddle x={10} />
+    <Paddle x={400} />
+  </div>,
   document.getElementById('root')
 );
