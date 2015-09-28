@@ -62,7 +62,7 @@ var Circle = React.createClass({
     style.backgroundColor = color;
     
     return <div style={style} {...other} />;
-  }
+  },
 });
 
 var Paddle = React.createClass({
@@ -70,30 +70,40 @@ var Paddle = React.createClass({
   height: 10,
   propTypes: {
     x: React.PropTypes.number.isRequired,
+    y: React.PropTypes.number.isRequired,
   },
+  render: function() {
+    return <Rectangle
+      x={this.props.x - this.width/2} y={this.props.y - this.height/2}
+      width={this.width} height={this.height}
+      style={{'transition': 'top 1s'}}
+    />;
+  },
+});
+
+var Game = React.createClass({
   getInitialState: function() {
-    return {atBottom: false};
+    window.onkeydown = this.handleKey;
+    return {
+      paddleAtBottom: false
+    };
   },
-  handleClick: function(event) {
+  handleKey: function(event) {
+    //console.log("key: " + event.char + " " + event.keyCode);
     this.setState({atBottom: !this.state.atBottom});
   },
   render: function() {
-    var y = this.state.atBottom ? 98 - this.height : 2;
-    return <Rectangle
-      x={this.props.x - this.width/2} y={y}
-      width={this.width} height={this.height}
-      style={{'transition': 'top 1s'}}
-      onClick={this.handleClick}
-    />;
-  }
+    var y = this.state.atBottom ? 93 : 7;
+    return <div>
+      <Rectangle x={0} y={0} width={100} height={100} color="lightgrey" />
+      <Paddle x={3} y={y} />
+      <Paddle x={97} y={7} />
+      <Circle x={50} y={50} radius={2} />
+    </div>;
+  },
 });
 
 React.render(
-  <div>
-    <Rectangle x={0} y={0} width={100} height={100} color="lightgrey" />
-    <Paddle x={3} />
-    <Paddle x={97} />
-    <Circle x={50} y={50} radius={2} />
-  </div>,
+  <Game />,
   document.getElementById('root')
 );
