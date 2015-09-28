@@ -90,7 +90,13 @@ var Game = React.createClass({
   },
   handleKey: function(event) {
     //console.log("key: " + event.char + " " + event.keyCode);
-    this.setState({atBottom: !this.state.atBottom});
+    if (event.keyCode == 87/*W*/ || event.keyCode == 38/*UP*/) {
+      this.setState({atBottom: false});
+    } else if (event.keyCode == 83/*S*/ || event.keyCode == 40/*DOWN*/) {
+      this.setState({atBottom: true});
+    } else {
+      this.setState({atBottom: !this.state.atBottom});
+    }
   },
   render: function() {
     var y = this.state.atBottom ? 93 : 7;
