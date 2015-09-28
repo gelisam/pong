@@ -19,7 +19,7 @@ var Paddle = React.createClass({
     return (
       <div
         className={classNames('paddle', posClass)}
-        style={{'left': this.props.x}}
+        style={{'left': `${this.props.x}vmin`}}
         onClick={this.handleClick}
       />
     );
@@ -28,8 +28,8 @@ var Paddle = React.createClass({
 
 React.render(
   <div>
-    <Paddle x={10} />
-    <Paddle x={400} />
+    <Paddle x={2} />
+    <Paddle x={100} />
   </div>,
   document.getElementById('root')
 );

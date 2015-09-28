@@ -1,14 +1,14 @@
 .paddle {
-  width: 20px;
-  height: 100px;
+  width: 2vmin;
+  height: 10vmin;
   background-color: black;
   transition: top 1s;
 }
 .top {
   position: absolute;
-  top: 10px;
+  top: 2vmin;
 }
 .bottom {
   position: absolute;
-  top: 400px;
+  top: 88vmin;
 }
